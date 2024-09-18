@@ -1,0 +1,42 @@
+* CÁC THAO TÁC LẬP PROJECT, CỐ LÊN TÔI ƠI
+B1: npm init
+B2: nmp i express
+B3: npm i --save-dev nodemon
+B4: Thêm 
+"start": "nodemon --inspect index.js",
+B5: npm i pug
+
+Tiếp theo mình chia nhỏ các file routes ra, và các file controllers ra
+Nói chung là nó thao tác như thê này này
+- Từ người dùng ->  Vào router -> dùng các hàm điều khiển(controller) -> lấy dữ liệu từ model(model lấy dữ liệu từ database)
+-> sau đó model trả về cho thằng controller -> controller dùng render để in ra file pung -> người dùng
+
+Tạo file .env chứa các hằng số, đẩy lên không đẩy lên github
+để file .env hoạt động cần cài npm i dotenv và nhúng file require('dotenv').config()
+
+- Nhúng bootrap4 (nhúng ở thẻ default để dùng được cho nhiều trang)
+- Nhúng ở head link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css")
+- Nhúng ở body      script(src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js")
+                    script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
+
+- Add app.use(express.static('public')) vào index.js để có thể sử dụng được file tĩnh
+Và ví dụ thì chúng ta tạo thêm 1 folder css và thêm file style.css
+Tiếp theo chungs ta nhúng vào file default.pug 
+        link(rel="stylesheet", href="/css/style.css")
+* Lưu ý mặc dù là file này ở trong public nhưng ta chỉ cần dấu "/" là nó tự vào folder public rồi 
+
+- Tạo thử mixins
+
+- Tạo database -> tạo dữ liệu ->npm i mongoose
+Nhúng
+Ví dụ file database.js
+
+Đoạn CSS để chứa ảnh trong 1 khung cho trước nếu thừa thì cắt đi, và phải chứa hết khung, giữ nguyên tỉ lệ
+width: 100%;
+object-fit: contain;
+
+
++ Tạo mảng mới để lưu phần giá sau khi giảm giá, tránh ảnh hưởng đến mảng ban đầu
+(Nhăc lại, map cần return để tạo ra mảng mới còn forEach thì không cần, nó thay đổi mảng cũ)
+
+** File pug muốn dùng thì include, fie js muốn dùng thì module.exports, file css muốn dùng thì nhúng bằng link(href)

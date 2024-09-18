@@ -1,0 +1,9 @@
+extend ../../layouts/default.pug
+include ../../mixins/list-girl.pug
+block main
+    +list-girl("Danh sach co gai")
+    .wrap
+        each item in listGirl
+            .inner-image
+                img(src=item.image)
+            p #{item.priceDiscount}

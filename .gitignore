@@ -1,0 +1,6 @@
+/node-modules
+/.pnp
+.pnp.js
+.env
+/build
+/converage
