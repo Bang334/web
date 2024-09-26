@@ -1,0 +1,93 @@
+extends ../../layout/default.pug 
+include ../../mixins/filterstatus.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+block main
+    if (messages.success)
+        script.
+            document.addEventListener('DOMContentLoaded', function() {
+                showAlert("#{messages.success}", 'success');
+            });
+    .mainblock
+        h1= pageTitle
+        br
+        .row 
+            .col-7
+                +filter-status(filterstatus)
+            .col-1
+            .col-4 
+                +search(keyword)
+        .row
+            .col-8
+                +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+            .col-2
+            .col-2
+                button(  
+                    class= "center kind1" 
+                    style="margin-top:8px"
+                    id="creat-girl"
+                ) Thêm
+
+        table(checkbox-multi)
+            thead
+                tr 
+                    th
+                        input(type="checkbox" name="checkall" onchange="toggleAllCheckboxes()")
+                    th STT
+                    th Ảnh
+                    th.name Tên
+                    th Giá
+                    th Trạng Thái
+                    th Hành Động
+            tbody
+                each i,index in ListGirl 
+                    tr
+                        td
+                            input(
+                                type="checkbox"
+                                name="id"
+                                value=i.id
+                                onchange="updateCheckAllCheckbox()"
+                            )
+                        td #{index+1}
+                        td.cell
+                            .imagegirl
+                                img(src=i.image)
+                        td #{i.name}
+                        td #{i.price}
+                        td
+                            if i.status=="active"
+                                button(  
+                                        class= "center kind1" 
+                                        data-status="active"
+                                        data-id=i.id
+                                        button-change-status
+                                    ) #{i.status}
+                            else
+                                button(
+                                        class= "center kind2" 
+                                        data-status="unactive"
+                                        data-id=i.id
+                                        button-change-status
+                                    ) #{i.status}
+                        td 
+                            .wrap-buttom
+                                button.buttomdelete.center(data-id=i.id button-delete) Xoa
+                                button.buttomedit.center Sua
+        +pagination(pagination)
+    form(
+        action="" 
+        method="POST"
+        id="form-change-status"
+        data-path=`${prefixAdmin}/products/change-status`
+    ) 
+    form(
+        action="" 
+        method="POST"
+        id="form-delete-item"
+        data-path=`${prefixAdmin}/products/delete`
+    ) 
+
+    script(src="/js/products.js")   
+    

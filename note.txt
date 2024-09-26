@@ -40,3 +40,103 @@ object-fit: contain;
 (Nhăc lại, map cần return để tạo ra mảng mới còn forEach thì không cần, nó thay đổi mảng cũ)
 
 ** File pug muốn dùng thì include, fie js muốn dùng thì module.exports, file css muốn dùng thì nhúng bằng link(href)
+
+
+- Tiếp theo tạo router, controller cho admin
+
+** Chúng ta không thể import file js vào file pug, nên có lúc chúng ta sẽ cần nhưng biến bên file js, vì vậy 
+có 1 biến giúp việc này là app.locals khi ta thêm nó vào file index.js có thể sài ở bất kì file pug nào
+
+*** Vậy là chúng ta đã hoàn thành giao diện cơ bản rồi
+Nói chung là đầu tiên chúng ta sẽ tạo router mỗi router sẽ thường chứa 1 hàm controller, 
+hầm controller sẽ lấy dữ liệu từ data base(hoặc ko) rồi render qua 1 file pug nhất định
+(Chúng ta có file .env để không gửi lên github, file public và câu lệnh app.use(express.static('public')) 
+để có thể truy cập file,view để chứa các file pug render,file config để làm nhưng thứ khác thường :vv)
+
+
+Kiến thức mới: muốn các phần tử trong bảng tách nhau người ta dùng padding, ko ai dùng margin
+
+
+REGEX: giúp hôc trợ tìm kiếm
+ví dụ const regex = new RegExp(keyword,"i")
+nó giúp tìm trong data base có cái nào chứa từ keyword không, tham số "i" giúp không phân biệt chữ hoa chữ thường
+
+* Dòng 9 file index.pug phần sản phẩm admin cài mixin để gọn code cũng như nếu cần thì sài lại phần mixin đó
+
+Trong bài làm mình đã gặp 1 vấn đề là, nếu hiện tại mình ở trang quá lớn, khi tìm kiếm họăc lọc status
+mình sẽ không đủ số trang như vậy nên nó sẽ lỗi, và lúc đó mình không biết truyền tham số pagination.currentPage
+như thế nào để set nó lại thành 1, và mình lúc đó hơi non, cuối cùng cũng nghĩ ra là set url 
+url.searchParams.set("page",1), hoặc mình sẽ tạo thêm thằng indexPage = i trong nút button rồi mình sài thôi
+
+*** Kinh nghiệm rút ra là:
+* Muốn js dùng được biến bên pug thì mình truyền qua attribute rồi mình get attribute
+* Muốn pug dùng được biến js thì truyền qua controllerjs 
+* Muốn js dùng được js thì mình exports
+* Muốn pug dùng được pug thì mình include
+
+
+
+Khi thay đổi 1 sản phẩm và lưu lại mongo thì dùng phương thức PATCH mà js chỉ có POST và GET nên cần cài thư viện
+npm i method-override
+const methodOverride = require('method-override')
+app.use(methodOverride('_method')) và gửi lên bằng method POST và thêm ?_method=PATCH hoặc mấy phương thức khác
+và cần sửa route thành patch router.patch('/change-status/:status/:id',controllers.changeStatus);
+PATCH: để tránh việc người dùng biết cú pháp và nhập lên url, khi đó sản phẩm cũng sẽ bị thay đổi
+* NOTE: thẻ a cũng có thể truy cập vào router mới, nhưng phương thức của thẻ a là GET nên không sài
+
+
+bài 22 1:17:00, body-parser giúp phân tích dữ liệu từ body của yêu cầu HTTP, thường là dữ liệu gửi từ biểu mẫu (form) 
+hoặc dữ liệu JSON. Sau khi cài đặt, bạn có thể sử dụng nó để dễ dàng truy cập dữ liệu trong các route của ứng dụng.
+npm install body-parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+Sau khi thự hiện xong chức năng xóa, tôi nhận ra như sau: đầu tiên là mình phải nhận diện được tác động người dùng lên web
+ví dụ ấn nút xóa, tiếp theo chuyển thông tin lên url, rồi router lấy xuống và cập nhật vào database
+1. Vì mình chưa học xxxx nên mình phải dùng form để đẩy lên url, đẩy bằng thuộc tính action của form
+lưu ý, form chỉ đẩy các giá trị của thuộc tính name:value
+2. Vì mình khai báo phần const listGirl = require("../../models/girl.model") bên route nên phải chuyển qua
+route để sử lý (Hành động xóa trong database phải được xử lý ở backend (controller) qua một API. vì ở front-end không thể tương tác với sever)
+
+Kỉ niệm đáng nhớ, đó là khi mình làm sự kiện restore dữ liệu, chuyện dài lắm qua restore/index.pug tự xem
+Dùng params khi cần lấy dữ liệu từ đường dẫn URL (ví dụ: /delete/:id).
+Dùng body khi dữ liệu được gửi qua body của request (ví dụ: form submit, dữ liệu JSON).
+
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+npm i express-session
+npm i cookie-parser
+npm i express-flash
+var flash = require('express-flash'),
+app.use(cookieParser('keyboard cat')); keyboard cat: thay bằng cái j khác cũng đc, 1 mình mình biết ví dụ NNNJUHFHA
+app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
+vc cứ tưởng mấy cái trên không cần ai ngờ, nếu ko có thì làm thông báo hơi bị khó, khi load web thì nó sẽ mất thông
+báo, nên muốn hiện thông báo sau khi load web thì cần dùng cái trên
+B1: thêm req.flash("success",`Cap nhat trang thai thanh ${status}`) vào những hàm cần hiện thông báo
+B2:
+    if (messages.success)
+        script.
+            document.addEventListener('DOMContentLoaded', function() {
+                showAlert("#{messages.success}", 'success');//success, warning, danger
+            });
+còn hàm showAlert thì được mình viết sẵn r
+
+thêm     timestamps: true  để biết thời gian sửa update ...
+
+npm i mongoose-slug-updater
+Tính năng chính:
+Tự động tạo slug từ một trường nhất định (ví dụ: từ trường title).
+Cập nhật slug khi giá trị của trường đó thay đổi.
+Xử lý trùng lặp: Nếu slug đã tồn tại, nó sẽ tự động thêm hậu tố (ví dụ: "-1", "-2",...) để tránh trùng lặp.
+thêm 
+const slug = require('mongoose-slug-updater');
+mongoose.plugin(slug);
+cho model
+
+npm i multer
+thêm enctype="multipart/form-data" vào thẻ form
+type="file" cho thẻ input ảnh
+const multer  = require('multer')
+Tốt nhất là lên đọc doc https://www.npmjs.com/package/multer

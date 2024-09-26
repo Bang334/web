@@ -1,0 +1,58 @@
+extends ../../layout/default.pug 
+include ../../mixins/form-change-multi.pug
+block main
+   .mainblock
+        h2 Khôi Phục Girl
+        button(class="Restore-Button") Khôi Phục
+        table(checkbox-multi)
+            thead
+                tr 
+                    th
+                        input(type="checkbox" name="checkall" onchange="toggleAllCheckboxes()")
+                    th STT
+                    th Ảnh
+                    th.name Tên
+                    th Giá
+                    th Trạng Thái
+                    th Hành Động
+            tbody
+                each i,index in ListGirl 
+                    tr
+                        td
+                            input(
+                                type="checkbox"
+                                name="id"
+                                value=i.id
+                                onchange="updateCheckAllCheckbox()"
+                            )
+                        td #{index+1}
+                        td.cell
+                            .imagegirl
+                                img(src=i.image)
+                        td #{i.name}
+                        td #{i.price}
+                        td
+                            if i.status=="active"
+                                button(  
+                                        class= "center kind1" 
+                                        data-status="active"
+                                        data-id=i.id
+                                    ) #{i.status}
+                            else
+                                button(
+                                        class= "center kind2" 
+                                        data-status="unactive"
+                                        data-id=i.id
+                                    ) #{i.status}
+                        td 
+                            button.buttomrestore.center(data-id=i.id button-restore) Restore
+
+            form(
+                action="" 
+                method="POST"
+                id="form-restore"
+                data-path=`${prefixAdmin}/products/res`
+            )
+            form(action=`${prefixAdmin}/products/restore-multi?_method=PATCH` id="restoremulti" method="POST")
+                input(type="hidden" name="ids" id="input-ids" value="")
+        script(src="/js/products.js")   

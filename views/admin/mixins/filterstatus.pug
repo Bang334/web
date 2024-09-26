@@ -1,0 +1,4 @@
+mixin filter-status(filterstatus)
+    .wrap-buttomstatus
+        each i in filterstatus 
+            button(class=`buttomstatus center ${i.class}` buttomstatus=i.status) #{i.name}

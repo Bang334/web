@@ -1,0 +1,154 @@
+header{
+    height: 50px;
+    width: 100%;
+    background-color:rgb(82, 82, 82);
+    color:#fff;
+    font-size: 20px;
+}
+#alert-container {
+    width: 33.33%; 
+    position: fixed; 
+    top: 20px; 
+    right: 20px;
+    z-index: 1050; 
+}
+.wrapheader{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    height: 45px;
+}
+.main{
+    display: flex;
+}
+.aside{
+    width: 100px;
+    height: 100vh;
+    background: #d1a375;
+}
+.asidestyle1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    color:black;
+    border-bottom: 1px #000 solid;
+}
+.asidestyle1 a{
+    font-size: 14px;
+}
+body{
+    font-weight: 900;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.imagegirl{
+    height: 40px;
+    width: 100px;
+    overflow: hidden;
+}
+
+.mainblock td img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.mainblock{
+    margin-left: 20px;
+}
+.mainblock .cell{
+    padding: 0;
+}
+.mainblock th, .mainblock td {
+    padding: 5px 10px;
+    border: 2px #000 solid;
+}
+.buttomdelete{
+    height: 20px;
+    width: 40px;
+    background-color: red;
+    color:#fff;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttomedit{
+    height: 20px;
+    width: 40px;
+    background-color: rgb(211, 167, 6);
+}
+.wrap-buttom{
+    display: flex;
+    justify-content: space-between;
+}
+.kind1{
+    font-weight: 800;
+    color: #fff;
+    background-color: rgb(90, 184, 103);
+    border-radius: 4px;
+}
+.kind2{
+    font-weight: 800;
+    color: #fff;
+    background-color: rgb(194, 86, 32);
+    border-radius: 4px;
+}
+.kind2:hover{
+    background-color: rgb(100, 14, 14);
+}
+.kind1:hover{
+    background-color: rgb(48, 117, 57);
+}
+.wrap-buttomstatus{
+    display: flex;
+    justify-content: space-between;
+}
+.buttomstatus{
+    border: 1px  rgb(90, 184, 103) solid;
+    background-color: #fff;
+    border-radius: 2px;
+    color: rgb(90, 184, 103);
+    margin: 10px;
+    height: 40px;
+    padding: 5px;
+}
+.buttomstatusfocus{
+    background-color: rgb(90, 184, 103);
+    color: #fff;
+}
+td button{
+    width: 100%;
+}
+.mainblock .rows{
+    width: 130%;
+}
+.mainblock .rows .col-6{
+    padding: 0;
+}
+.input-group{
+    margin-top: 10px;
+}
+th.name{
+    width: auto;
+    max-width: 215px;
+    height: 42px;
+}
+
+.Restore-Button{
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    margin: 5px;
+    background-color: #4db5b7;
+    font-weight: 600;
+}
+.Restore-Button:hover{
+    background-color: #007f84;
+}
+.main-create{
+    width:1400px;
+}
+.main-create div{
+    margin: 5px;
+    display:flex;
+    flex-direction:column;
+}
