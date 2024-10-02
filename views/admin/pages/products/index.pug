@@ -74,7 +74,12 @@ block main
                         td 
                             .wrap-buttom
                                 button.buttomdelete.center(data-id=i.id button-delete) Xoa
-                                button.buttomedit.center Sua
+                                a.buttomedit.center(
+                                    href=`${prefixAdmin}/products/edit/${i.id}`
+                                ) Sua
+                                a.buttonDetail.center(
+                                    href=`${prefixAdmin}/products/detail/${i.id}`
+                                ) Chi Tiết
         +pagination(pagination)
     form(
         action="" 

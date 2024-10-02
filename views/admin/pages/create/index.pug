@@ -2,6 +2,20 @@ extends ../../layout/default.pug
 
 block main
     .main-create
+        script.
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof showAlert === 'function') {
+                    if ("#{messages.success}") {
+                        showAlert("#{messages.success}", 'success');
+                    }
+                    if ("#{messages.warning}") {
+                        showAlert("#{messages.warning}", 'warning');
+                    }
+                    if ("#{messages.danger}") {
+                        showAlert("#{messages.danger}", 'danger');
+                    }
+                }
+            });
         h2 Thêm mới bạn nữ
         form(
             id="form-create" 
@@ -15,9 +29,10 @@ block main
             div 
                 label(for="job") Nhap cong viec:
                 input(id="job" name="job" placeholder="VD: teacher" type="text" value="")
-            div 
+            div(upload-image)
                 label(for="image") Anh:
-                input(id="image" name="image" type="file" value="" class="form-control-file" accept="image/*")
+                input(id="image" name="image" type="file" value="" class="form-control-file" accept="image/*" upload-image-input)
+                img(src="" upload-image-preview class="image-preview")
             div    
                 label(for="des") Mo ta:
                 textarea(name="des" id="des" cols="10" rows="5" value="")

@@ -14,7 +14,10 @@ const listGirlSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    status: String,
+    status: {
+        type: String,
+        default: "active"
+    },
     discount: Number,
     des: String,
     deletedAt: Date,

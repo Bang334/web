@@ -1,0 +1,18 @@
+extends ../../layout/default.pug 
+
+block main
+    h2 Thông tin chi tiết
+    p Tên: #{girl.name}
+    p Tuổi: #{girl.age}
+    p Nghề nghiệp: #{girl.job}
+    p Giá: #{girl.price}
+    p Số lượng: #{girl.stock}
+    p Giảm giá: #{girl.discount}%
+    p Trạng thái: #{girl.status}
+    p Mô tả: #{girl.des}
+    p Vị trí: #{girl.position}
+    img(src=girl.image, alt=girl.name)
+    div
+    a.redirectToUpdate(
+        href=`/admin/products/edit/${girl.id}`
+    ) Cập nhật

@@ -195,3 +195,20 @@ if(creat){
         window.location.href = '/admin/products/create';
     })
 }
+
+//upload ảnh
+
+const uploadimgae= document.querySelector("[upload-image")
+if(uploadimgae){
+    const uploadImageInput=document.querySelector("[upload-image-input]")
+    const uploadImagePreview=document.querySelector("[upload-image-preview]")
+    uploadImageInput.addEventListener("change",(e) =>{
+        console.log(e)
+        const file = e.target.files[0]
+        if(file){
+            uploadImagePreview.src=URL.createObjectURL(file)
+        }
+    })
+}
+
+//end upload ảnh

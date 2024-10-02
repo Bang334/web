@@ -44,7 +44,7 @@ module.exports.changeStatus = async (req, res) => {
     const status=req.params.status
     const id=req.params.id
     await listGirl.updateOne({ _id:id},{status:status});
-    req.flash("success",`Cap nhat trang thai thanh ${status}`)
+    req.flash("success",`Cap nhat trang thai thanh ${status}`) 
     res.redirect("back")
 }
 
@@ -112,10 +112,51 @@ module.exports.getcreate = async (req, res) => {
     req.body.price=parseInt(req.body.price)
     req.body.stock=parseInt(req.body.stock)
     req.body.discount=parseInt(req.body.discount)
-    req.body.image=`/uploads/${req.file.filename}`
+    if(req.file){
+        req.body.image=`/uploads/${req.file.filename}`
+    }
     console.log(req.body)
     const girl = new listGirl(req.body)
     await girl.save()
     res.redirect(`${systemConfig.prefixAdmin}/products`); 
 }
+//edit
+module.exports.edit = async (req, res) => {
+    // console.log(req)
+    const find = {
+        deleted:false,
+        _id: req.params.id
+    }
+    const girl = await listGirl.findOne(find)
+    res.render("admin/pages/edit/index",{
+        girl:girl
+    })
+}
 
+module.exports.editPatch = async(req,res) => {
+    req.body.age=parseInt(req.body.age)
+    req.body.price=parseInt(req.body.price)
+    req.body.stock=parseInt(req.body.stock)
+    req.body.discount=parseInt(req.body.discount)
+    if(req.file){
+        req.body.image=`/uploads/${req.file.filename}`
+    }
+    try{
+        await listGirl.updateOne({_id:req.params.id},req.body)
+    } catch(error){
+        console.log("Loi update")
+    }
+    req.flash("success","Cập nhật thành công ")
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
+}
+
+module.exports.detail =async (req, res) => {
+    const find = {
+        deleted:false,
+        _id: req.params.id
+    }
+    const girl = await listGirl.findOne(find)
+    res.render("admin/pages/detail/index",{
+        girl:girl
+    })
+}

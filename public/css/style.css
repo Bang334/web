@@ -1,0 +1,39 @@
+.inner-image {
+    width: 300px;
+    margin-bottom: 10px; 
+}
+
+.inner-image img {
+    width: 100%;
+    max-height: 200px; 
+    object-fit: contain;
+}
+
+.wrap-item-client {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start; 
+}
+
+.wrap-item-client p {
+    color: red;
+    margin-top: 5px; 
+}
+.logo{
+    width: 50px;
+    height: auto;
+}
+.wrap-block{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.inner-menu ul{
+    display: flex;
+}
+.inner-menu li{
+    margin-left: 20px;
+    list-style: none;
+}

@@ -2,8 +2,11 @@ extend ../../layouts/default.pug
 include ../../mixins/list-girl.pug
 block main
     +list-girl("Danh sach co gai")
-    .wrap
+    .wrap-item-client
         each item in listGirl
-            .inner-image
-                img(src=item.image)
-            p #{item.priceDiscount}
+            a(href=`/products/${item.slug}`)
+                .wrap-block
+                    .inner-image
+                        img(src=item.image)
+                    p #{item.name}
+                    p #{item.priceDiscount}

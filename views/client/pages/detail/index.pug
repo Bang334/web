@@ -1,0 +1,14 @@
+extend ../../layouts/default.pug
+block main
+    h1 Thong tin chi tiet
+    p Tên: #{girl.name}
+    p Tuổi: #{girl.age}
+    p Nghề nghiệp: #{girl.job}
+    p Giá: #{girl.price}
+    p Số lượng: #{girl.stock}
+    p Giảm giá: #{girl.discount}%
+    p Trạng thái: #{girl.status}
+    p Mô tả: #{girl.des}
+    if (girl.position)
+        p Vị trí: #{girl.position}
+    img(src=girl.image, alt=girl.name)

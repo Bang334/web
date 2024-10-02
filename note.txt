@@ -139,4 +139,12 @@ npm i multer
 thêm enctype="multipart/form-data" vào thẻ form
 type="file" cho thẻ input ảnh
 const multer  = require('multer')
-Tốt nhất là lên đọc doc https://www.npmjs.com/package/multer
+Tốt nhất là lên đọc doc https://www.npmjs.com/package/multer, https://www.npmjs.com/package/json-server
+
+
+xem ảnh trước khi upload https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+
+
+file validate nghĩa là các file để xác minh nhập đúng không
+trong các router có thể có nhiều đối số, nó sẽ chạy tuần tự từng cái, nếu thỏa mãn thì phải dùng next() để cho nó chạy 
+cái tiếp theo, ví dụ file product.validate

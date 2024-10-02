@@ -1,0 +1,59 @@
+extends ../../layout/default.pug 
+
+block main
+    .main-create
+        script.
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof showAlert === 'function') {
+                    if ("#{messages.success}") {
+                        showAlert("#{messages.success}", 'success');
+                    }
+                    if ("#{messages.warning}") {
+                        showAlert("#{messages.warning}", 'warning');
+                    }
+                    if ("#{messages.danger}") {
+                        showAlert("#{messages.danger}", 'danger');
+                    }
+                }
+            });
+        h2 Chỉnh sửa thông tin
+        form(
+            id="form-edit" 
+            action=`/admin/products/edit/${girl.id}?_method=PATCH` 
+            method="POST"
+            enctype="multipart/form-data"
+        )
+            div 
+                label(for="name") Nhap ten:
+                input(id="name" name="name" value=girl.name type="text")
+            div 
+                label(for="job") Nhap cong viec:
+                input(id="job" name="job" placeholder="VD: teacher" type="text" value=girl.job)
+            div(upload-image)
+                label(for="image") Anh:
+                input(id="image" name="image" type="file" value="" class="form-control-file" accept="image/*" upload-image-input)
+                img(src=girl.image  upload-image-preview class="image-preview")
+            div    
+                label(for="des") Mo ta:
+                textarea(name="des" id="des" cols="10" rows="5") #{girl.des}
+                //- textarea ko vó value nên phải để ngoài như vậy
+            div 
+                label(for="age") Nhap tuoi:
+                input(id="age" name="age" placeholder="Nhap tuoi" type="number" value=girl.age)
+            div 
+                label(for="price") Nhap gia:
+                input(id="price" name="price" placeholder="0" type="number" value=girl.price)    
+            div 
+                label(for="discount") Nhap % giam gia:
+                input(id="discount" name="discount" placeholder="0" type="number" value=girl.discount) 
+            div 
+                label(for="stock") Nhap so hang:
+                input(id="stock" name="stock" placeholder="0" type="number" value=girl.stock)    
+            input(type="radio" id="active" name="status" value="active" checked=(girl.status == "active" ? true : false))
+            label(for="active") Hoat dong
+            input(type="radio" id="active" name="status" value="unactive" checked=(girl.status == "unactive" ? true : false))
+            label(for="unactive") Khong Hoat Dong
+            br
+            button(id="button-submit") Cập nhật
+        
+        

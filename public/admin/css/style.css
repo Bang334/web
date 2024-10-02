@@ -67,6 +67,8 @@ body{
     width: 40px;
     background-color: red;
     color:#fff;
+    margin: 5px;
+
 }
 .center{
     display: flex;
@@ -77,6 +79,8 @@ body{
     height: 20px;
     width: 40px;
     background-color: rgb(211, 167, 6);
+    margin: 5px;
+
 }
 .wrap-buttom{
     display: flex;
@@ -151,4 +155,18 @@ th.name{
     margin: 5px;
     display:flex;
     flex-direction:column;
+}
+.image-preview{
+    width: 300px;
+    height: auto;
+}
+.buttonDetail{
+    background-color: #70d6d7;
+    height: 20px;
+    width: auto;
+    margin: 5px;
+}
+.redirectToUpdate{
+    margin:5px;
+    background-color: #4db5b7;
 }
