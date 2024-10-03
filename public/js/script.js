@@ -212,3 +212,23 @@ if(uploadimgae){
 }
 
 //end upload ảnh
+
+const sort = document.querySelector('.form-sort-select')
+const buttonClear = document.querySelector("[buttonClear]")
+if(sort){
+    let url=new URL(window.location.href);
+    sort.addEventListener("change", (e) => {
+        const [kindSort, typeSort] = e.target.value.split("-")
+        url.searchParams.set("kindSort",kindSort)
+        url.searchParams.set("typeSort",typeSort)
+        window.location.href = url.href
+    })
+    buttonClear.addEventListener("click", ()=>{
+        url.searchParams.delete("kindSort")
+        url.searchParams.delete("typeSort")
+        window.location.href = url.href
+    })
+    const stringSort = `${url.searchParams.get("kindSort")}-${url.searchParams.get("typeSort")}`
+    const optionSelected = sort.querySelector(`option[value="${stringSort}"]`)
+    optionSelected.selected=true;
+}

@@ -148,3 +148,14 @@ xem ảnh trước khi upload https://stackoverflow.com/questions/4459379/previe
 file validate nghĩa là các file để xác minh nhập đúng không
 trong các router có thể có nhiều đối số, nó sẽ chạy tuần tự từng cái, nếu thỏa mãn thì phải dùng next() để cho nó chạy 
 cái tiếp theo, ví dụ file product.validate
+
+
+https://console.cloudinary.com/pm/c-47378542acf1070ea862a14cdc091d/getting-started
+npm install cloudinary
+npm install streamifier
+
+req.body[req.file.fieldname]: cai nay hay phet
+
+req.body: Lấy dữ liệu từ body của request, thường dùng cho POST, PUT.
+req.query: Lấy dữ liệu từ query string của URL, thường dùng trong GET.
+req.params: Lấy dữ liệu từ tham số động của URL (path parameters).

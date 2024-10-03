@@ -27,9 +27,18 @@ module.exports.index = ( async (req, res) => {
         },
         req.query,
         countGirl
-    )
+    );
     //End phân trang
-    const ListGirl=await listGirl.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip).sort({position:"desc"})
+    let sort ={};
+    if(req.query.typeSort && req.query.kindSort){
+        sort[req.query.kindSort] = req.query.typeSort
+    }else{
+        sort.position = "desc"
+    }
+    const ListGirl=await listGirl.find(find)
+    .limit(objectPagination.limitItem)
+    .skip(objectPagination.skip)
+    .sort(sort)
     res.render("admin/pages/products/index",{
         pageTitle: "Danh sách bạn nữ",
         ListGirl:ListGirl,
@@ -112,9 +121,6 @@ module.exports.getcreate = async (req, res) => {
     req.body.price=parseInt(req.body.price)
     req.body.stock=parseInt(req.body.stock)
     req.body.discount=parseInt(req.body.discount)
-    if(req.file){
-        req.body.image=`/uploads/${req.file.filename}`
-    }
     console.log(req.body)
     const girl = new listGirl(req.body)
     await girl.save()

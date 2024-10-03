@@ -19,9 +19,18 @@ block main
             .col-4 
                 +search(keyword)
         .row
-            .col-8
+            .col-5
                 +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-            .col-2
+            .col-5
+                .d-flex.align-items-start
+                    .form-sort
+                        select(name="type" class="form-control form-sort-select") 
+                            option(disabled selected) -- Chọn Hành Động --
+                            option(value="price-asc") Tăng theo giá tiền
+                            option(value="price-desc") Giảm theo giá tiền
+                            option(value="name-asc") Sắp xếp theo tên từ A-Z
+                            option(value="name-desc") Sắp xếp theo tên từ Z-A
+                    button(type="submit" class="btn btn-primary" buttonClear) Clear
             .col-2
                 button(  
                     class= "center kind1" 

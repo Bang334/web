@@ -38,8 +38,8 @@ header{
     font-size: 14px;
 }
 body{
+    font-family: "Noto Serif", serif;
     font-weight: 900;
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .imagegirl{
     height: 40px;
