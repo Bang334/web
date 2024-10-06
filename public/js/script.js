@@ -113,7 +113,6 @@ if (formChangemulti) {
             if (idsInput) {
                 idsInput.value = ids.join(',');
             }
-            console.log(formChangemulti)
             formChangemulti.submit();
         } else {
             alert("Chọn ít nhất 1 bản ghi");
@@ -198,8 +197,8 @@ if(creat){
 
 //upload ảnh
 
-const uploadimgae= document.querySelector("[upload-image")
-if(uploadimgae){
+const uploadimage= document.querySelector("[upload-image")
+if(uploadimage){
     const uploadImageInput=document.querySelector("[upload-image-input]")
     const uploadImagePreview=document.querySelector("[upload-image-preview]")
     uploadImageInput.addEventListener("change",(e) =>{
