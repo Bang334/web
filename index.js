@@ -1,5 +1,6 @@
 const express = require('express')
 require('dotenv').config()
+var path = require('path');//dung cho tinymce
 const route = require("./routes/client/index.route")
 const routeAdmin = require("./routes/admin/index.route")
 const systemConfig=require("./config/system")
@@ -12,11 +13,14 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 //bỏ cũng đc
 const slug = require('mongoose-slug-updater');
-
 database.connect()
 
 const app = express()
 const port = process.env.PORT;
+//tinymce
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+//end tinymce
+
 
 app.locals.prefixAdmin=systemConfig.prefixAdmin
 app.use(bodyParser.urlencoded({ extended: false }))

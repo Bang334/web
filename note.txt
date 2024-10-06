@@ -159,3 +159,7 @@ req.body[req.file.fieldname]: cai nay hay phet
 req.body: Lấy dữ liệu từ body của request, thường dùng cho POST, PUT.
 req.query: Lấy dữ liệu từ query string của URL, thường dùng trong GET.
 req.params: Lấy dữ liệu từ tham số động của URL (path parameters).
+
+
+npm install --save tinymce
+https://www.tiny.cloud/docs/tinymce/latest/expressjs-pm/
