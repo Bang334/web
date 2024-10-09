@@ -1,5 +1,6 @@
 tinymce.init({
     selector: "textarea",
+    plugins: "image",
 });
 //hoặc có thể thêm thông tin để cho nó biết chọn cái nào để add tinymce
 // Ví dụ trên là chọn thẻ textarea
