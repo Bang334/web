@@ -1,0 +1,108 @@
+extends ../../layout/default.pug 
+
+block main
+    .container--Permission 
+        div.justify-between
+            h1 Thiet lap phan quyen 
+            button(
+                type="submit"
+                class="btn btn-primary mb-3"
+                button-submit
+            )   Cap nhat
+        if(record)
+            div(data-record=record)
+            table(class="table-permission table-hover table-sm")
+                thead(class="text-center")
+                    tr 
+                        th Tính năng
+                        each item in record
+                            th #{item.name}
+                tbody(class="text-center")
+                    tr 
+                        td(colspan=record.length + 1 class="nameDanhmuc") 
+                            b Danh mục sản phẩm
+                    tr
+                        td Xem
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="view-product-category" data-item=item.id)
+                    tr
+                        td Thêm mới
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="new-product-category" data-item=item.id)
+                    tr
+                        td Chỉnh sửa
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="adjust-product-category" data-item=item.id)
+                    tr
+                        td Xóa
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="delete-product-category" data-item=item.id)
+                    tr 
+                        td(colspan=record.length + 1 class="nameDanhmuc")
+                            b San Pham
+                    tr
+                        td Xem
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="view-products" data-item=item.id)
+                    tr
+                        td Thêm mới
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="new-products" data-item=item.id)
+                    tr
+                        td Chỉnh sửa
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="adjust-products" data-item=item.id)
+                    tr
+                        td Xóa
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="delete-products" data-item=item.id)
+                    //- Nhom Quyen 
+                    tr 
+                        td(colspan=record.length + 1 class="nameDanhmuc")
+                            b Nhom Quyen
+                    tr
+                        td Xem
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="view-role" data-item=item.id)
+                    tr
+                        td Thêm mới
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="new-role" data-item=item.id)
+                    tr
+                        td Chỉnh sửa
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="adjust-role" data-item=item.id)
+                    tr
+                        td Xóa
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="delete-role" data-item=item.id)
+                    tr
+                        td Phan Quyen
+                        each item in record
+                            td
+                                input(type="checkbox" class="permission-checkbox" data-permission="permission" data-item=item.id)
+    form(
+        id="form-change-permission"
+        method="POST"
+        action=`${prefixAdmin}/role/permissions?_method=PATCH`
+        class="d-none"
+    )
+        div(class="form-group")
+            input(
+                type="text"
+                class="form-control"
+                name="permission"
+            )
+    script(src="/js/role.js") 

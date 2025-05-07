@@ -1,5 +1,5 @@
 extends ../../layout/default.pug 
-
+include ../../mixins/select-tree.pug
 block main
     .main-create
         script.
@@ -26,6 +26,11 @@ block main
             div 
                 label(for="name") Nhap ten:
                 input(id="name" name="name" value=girl.name type="text")
+            div 
+                label(for="product_category") Danh muc:
+                select(name="parent" id="product_category" class="form-pickParent" )
+                    option(value="") -- Chọn Danh Mục --
+                    + select-tree(relative,1,(girl.product_category==""?"#":girl.product_category))
             div 
                 label(for="job") Nhap cong viec:
                 input(id="job" name="job" placeholder="VD: teacher" type="text" value=girl.job)

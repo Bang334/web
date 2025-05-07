@@ -22,15 +22,12 @@ header{
     display: flex;
 }
 .aside{
-    width: 100px;
-    height: 100vh;
+    width: 150px;
+    height: 900px;
     background: #d1a375;
 }
 .asidestyle1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
+    margin: 10px 10px;
     color:black;
     border-bottom: 1px #000 solid;
 }
@@ -169,4 +166,120 @@ th.name{
 .redirectToUpdate{
     margin:5px;
     background-color: #4db5b7;
+}
+/* style cho nhóm quyền */
+.wrap-GropPermission{
+    font-family: "Playfair Display", serif;
+}
+.GroupPermission{
+    margin-top: 15px;
+    color: #0056b3;
+}
+.card{
+    margin: 0 20px;
+    width: 86vw;
+}
+.permission td,.permission th{
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+/* style cho Phân Quyền */
+.card.mb-3{
+    margin: 20px;
+    width: 90vw;
+}
+.buttomDelete{
+    background-color: red;
+    color: rgb(33, 106, 180);
+    height: 20px;
+    width: auto;
+    margin: 5px;
+    margin-left: 0px;
+}
+.wrap-buttom-permisstion{
+    display: flex;
+}
+
+.container--Permission{
+    font-family: "Playfair Display", serif;
+    margin: 10px;
+    width: 1350px;
+}
+.justify-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: right;
+}
+
+.table-permission {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0px;
+    font-size: 1rem;
+}
+
+.table-permission th, .table-permission td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table-permission th {
+    background-color: #003f7e;
+    font-weight: bold;
+    font-size: 25px;
+    color:#70d6d7
+}
+
+.table-permission tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-permission tr:hover {
+    background-color: #ddd;
+}
+
+.table-permission .nameDanhmuc b{
+    font-weight: bold; background-color: #f8f9fa;font-size: 20px; color: #0056b3;
+    margin-left: -90px;
+}
+
+.permission-checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+tbody tr td {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+.justify-between h1{
+    margin-left: 500px;
 }

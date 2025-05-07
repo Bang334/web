@@ -1,0 +1,62 @@
+extends ../../layout/default.pug 
+include ../../mixins/filterstatus.pug
+include ../../mixins/search.pug
+block main
+    .mainblock
+        h1= pageTitle
+        table(checkbox-multi)
+            thead
+                tr 
+                    th
+                        input(type="checkbox" name="checkall" onchange="toggleAllCheckboxes()")
+                    th STT
+                    th Ảnh
+                    th.name Tên
+                    th Số lượng
+                    th Trạng Thái
+                    th Hành Động
+            tbody
+                each i,index in infoGirl
+                    tr
+                        td
+                            input(
+                                type="checkbox"
+                                name="id"
+                                value=i.id
+                                onchange="updateCheckAllCheckbox()"
+                            )
+                        td #{index+1}
+                        td.cell
+                            .imagegirl
+                                img(src=i.image)
+                        td #{i.name}
+                        td #{i.stock}
+                        td
+                            if i.status=="active"
+                                button(  
+                                        class= "center kind1" 
+                                        data-status="active"
+                                        data-id=i.id
+                                        button-change-status
+                                    ) #{i.status}
+                            else
+                                button(
+                                        class= "center kind2" 
+                                        data-status="unactive"
+                                        data-id=i.id
+                                        button-change-status
+                                    ) #{i.status}
+                        td 
+                            .wrap-buttom
+                                button.buttomdelete.center(data-id=i.id button-delete) Xoa
+                                a.buttomedit.center(
+                                    href=`${prefixAdmin}/products-category/edit/${i.id}`
+                                ) Sua
+                                a.buttonDetail.center(
+                                    href=`${prefixAdmin}/products-category/detail/${i.id}`
+                                ) Chi Tiết
+    //- script(src="/js/products.js")   
+    a.center(
+        href=`${prefixAdmin}/products-category/create`
+    ) Tạo mới
+    

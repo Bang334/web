@@ -33,3 +33,20 @@ if(restore.length > 0){
     })
 }
 
+const buttonsDelete=document.querySelectorAll("[button-delete-role]")
+if(buttonsDelete.length>0){
+    const formDeleteItem=document.querySelector("#deleteRole")
+    const path=formDeleteItem.getAttribute("data-path")
+    buttonsDelete.forEach(button =>{
+        button.addEventListener("click",() =>{
+            const isConfirm=confirm("Bạn chắc chắn muốn xóa chứ?")
+            if(isConfirm){
+                const id=button.getAttribute("data-id")
+                const action=`${path}/${id}?_method=DELETE`
+                formDeleteItem.action=action
+                console.log(formDeleteItem.action)
+                formDeleteItem.submit()
+            }
+        })
+    })
+}

@@ -1,0 +1,48 @@
+extends ../../layout/default.pug 
+
+block main
+    .wrap-GropPermission
+        h1(class="mb-4" class="GroupPermission") Nhóm Quyền
+        .card
+            .card-header Danh sách
+            .card-body
+                .row
+                    .col-8
+                    .col-4.text-right
+                    a(
+                        href= `${prefixAdmin}/role/create` 
+                        class="btn btn-outline-success"
+                    ) + Thêm mới
+
+            table(class="permission")
+                thead
+                    tr 
+                        th STT
+                        th.name Tên
+                        th Mô tả
+                        th Hành Động
+                tbody
+                    each i,index in records
+                        tr
+                            td #{index+1}
+                            td #{i.name}
+                            td #{i.des}
+                            td 
+                                .wrap-buttom-permisstion
+                                    button.buttomDelete.center(
+                                        button-delete-role
+                                        data-id = i.id
+                                    ) Xoa
+                                    a.buttomedit.center(
+                                        href=`${prefixAdmin}/role/edit/${i.id}`
+                                    ) Sua
+                                    a.buttonDetail.center(
+                                        href=`${prefixAdmin}/role/detail/${i.id}`
+                                    ) Chi Tiết
+        form(
+            action="" 
+            method="POST"
+            id="deleteRole"
+            data-path=`${prefixAdmin}/role/delete`
+        ) 
+    script(src="/js/products.js")   

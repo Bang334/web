@@ -1,28 +1,24 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
-// Định nghĩa schema cho listGirl
-const listGirlSchema = new mongoose.Schema({
+// Định nghĩa schema cho info
+const info = new mongoose.Schema({
     name: String,
-    age: Number,
-    image: String,
-    job: String,
-    price: Number,
-    product_category:{
-        type: String,
+    parent:{
+        type:String,
         default:"",
     },
+    status: {
+        type: String,
+        default: "active"
+    },
+    image: String,
     slug: { type: String, slug: "name", unique:true },
     stock: Number,
     deleted: {
         type: Boolean,
         default: false
     },
-    status: {
-        type: String,
-        default: "active"
-    },
-    discount: Number,
     des: String,
     deletedAt: Date,
     position: Number
@@ -30,6 +26,6 @@ const listGirlSchema = new mongoose.Schema({
     timestamps: true 
 });
 
-const listGirl = mongoose.model('listGirl', listGirlSchema, "Girl");
+const infoGirl = mongoose.model('infoGirl', info, "info");
 
-module.exports = listGirl
+module.exports = infoGirl

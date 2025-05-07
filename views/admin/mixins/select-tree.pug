@@ -1,0 +1,10 @@
+mixin select-tree(infoGirl, level = 1,parent="macdinh")
+    each i in infoGirl
+        - const prefix = Array(level + 1).join("-- ") 
+        - const isSelected = i._doc.name == parent
+        option(value=i._doc.name selected = (i._doc.name == parent)) #{prefix} #{i._doc.name}
+        if isSelected
+            return
+        if i.children && i.children.length > 0 
+            +select-tree(i.children, level + 1,parent) 
+

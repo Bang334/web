@@ -1,0 +1,33 @@
+extends ../../layout/default.pug 
+
+block main
+    h1 Thêm mới nhóm quyền
+    form(
+        action = `${prefixAdmin}/role/edit/${record.id}?_method=PATCH`
+        method='POST'
+    )
+        div(class='form-group')
+            label(for="name") Nhập tiêu đề:
+            input(
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                value = record.name
+                required
+            ) 
+        div(class='form-group')
+            label(for="des") Nhập mô tả:
+            input(
+                type="text"
+                class="form-control"
+                id="des"
+                name="des"
+                value = record.des
+                required
+            ) 
+        div(class='form-group')
+            button(
+                type="submit"
+                class="btn btn-primary"
+            ) Tạo mới

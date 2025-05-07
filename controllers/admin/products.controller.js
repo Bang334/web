@@ -4,6 +4,8 @@ const filterStatusHelper = require("../../helper/filter.status")
 const searchInfo = require("../../helper/search")
 const pagePagination = require("../../helper/pagination")
 const systemConfig= require("../../config/system")
+const buildChildHelper = require("../../helper/buildChild")
+const info = require("../../models/info.model")
 module.exports.index = ( async (req, res) => {
     // Thay thế bên helper
     const filterstatus = filterStatusHelper(req.query)
@@ -112,8 +114,11 @@ module.exports.restoreMulti = async (req, res) => {
     res.redirect("back")
 }
 
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
+    const infoGirl = await info.find({});
+    const relative = buildChildHelper.buildChild(infoGirl); 
     res.render("admin/pages/create/index",{
+        infoGirl:relative,
     })
 }
 module.exports.getcreate = async (req, res) => {
@@ -126,16 +131,20 @@ module.exports.getcreate = async (req, res) => {
     await girl.save()
     res.redirect(`${systemConfig.prefixAdmin}/products`); 
 }
+
 //edit
 module.exports.edit = async (req, res) => {
     // console.log(req)
+    const infoGirl = await info.find({});
+    const relative = buildChildHelper.buildChild(infoGirl); 
     const find = {
         deleted:false,
         _id: req.params.id
     }
     const girl = await listGirl.findOne(find)
     res.render("admin/pages/edit/index",{
-        girl:girl
+        girl:girl,
+        relative:relative
     })
 }
 
